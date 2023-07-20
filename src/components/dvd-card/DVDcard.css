@@ -1,0 +1,30 @@
+.dvd-card {
+    position: relative;
+    overflow: hidden;
+}
+  
+.dvd-poster {
+    width: 100%;
+    transition: opacity 0.3s ease-in-out;
+}
+  
+.dvd-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+}
+  
+.dvd-card:hover .dvd-poster {
+    opacity: 0.3;
+}
+  
+.dvd-card:hover .dvd-info {
+    transform: translateY(0);
+}
+  
