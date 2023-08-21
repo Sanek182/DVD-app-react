@@ -16,7 +16,7 @@ function Header() {
         <a href="/products" className="products-icon">Products</a>
         <input type="search" className="search-window" placeholder="Search" />
         <a href="/cart" className="cart-icon">Cart</a>
-        <button className="login-button">Login</button>
+        <a href="/auth/login" className="login-button">Login</a>
       </div>
     </header>
   );
