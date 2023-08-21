@@ -14,7 +14,7 @@ function Registration() {
       return;
     }
 
-    // Register the user in your MySQL database
+    // Register the user in your MySQL databasecessary 
     // Redirect to main page or show "Continue Exploring" button
   };
 
