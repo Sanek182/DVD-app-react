@@ -31,9 +31,11 @@ function MainPage() {
         <div>
             <Header />
             <Background />
-            {dvds.map(dvd => (
-                <DVDcard key={dvd.id} dvd={dvd} />
-            ))}
+            <div className="dvd-container">
+                {dvds.map(dvd => (
+                    <DVDcard key={dvd.id} dvd={dvd} />
+                ))}
+            </div>
             <Footer />
         </div>
     )
