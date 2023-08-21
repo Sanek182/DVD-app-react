@@ -1,0 +1,30 @@
+.registration-container {
+    display: flex;
+    justify-content: flex-start;
+    background-color: lightblue;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .registration-form {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 10px;
+    max-width: 400px;
+  }
+  
+  .registration-form .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .registration-form input {
+    width: 48%;
+  }
+  
+  .right-section {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
