@@ -6,7 +6,7 @@ export const loginUser = async (username, password) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return { error: 'Login failed' };
+    return error.response.data;
   }
 };
 
@@ -16,6 +16,6 @@ export const registerUser = async (username, email, password) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return { error: 'Registration failed' };
+    return error.response.data;
   }
 };

@@ -20,10 +20,10 @@ function Login() {
         try {
             const response = await loginUser(username, password);
             if (response.success) {
-            alert('You have successfully logged in!');
-            navigate('/');
+                alert(response.message);
+                navigate('/');
             } else {
-            setErrorMessage("Such user does not exist. Please check your inputs once again.");
+            setErrorMessage(response.message);
             }
         } catch (error) {
             setErrorMessage("An error occurred. Please try again later.");
