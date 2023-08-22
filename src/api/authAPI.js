@@ -1,0 +1,21 @@
+import axios from 'axios';
+
+export const loginUser = async (username, password) => {
+  try {
+    const response = await axios.post('/auth/login', { username, password });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return { error: 'Login failed' };
+  }
+};
+
+export const registerUser = async (username, email, password) => {
+  try {
+    const response = await axios.post('/auth/register', { username, email, password });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return { error: 'Registration failed' };
+  }
+};
