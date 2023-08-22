@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Background from '../../components/static/Background';
+import { registerUser } from '../../api/authAPI';
+import { useNavigate } from 'react-router-dom'; 
 import "./RegistrationPage.css";
 
 function Registration() {
@@ -7,15 +9,31 @@ function Registration() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = () => {
-    if (password !== repeatPassword) {
-      alert("Passwords do not match!");
-      return;
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    if (username.trim() === "" || email.trimEnd() === "" || password.trim() === "" || repeatPassword.trim() === "") {
+        setErrorMessage("Please enter all the required fields.");
+        return;
     }
 
-    // Register the user in your MySQL databasecessary 
-    // Redirect to main page or show "Continue Exploring" button
+    if (password !== repeatPassword) {
+        setErrorMessage("Passwords do not match!");
+        return;
+    }
+    try {
+        const response = await registerUser(username, email, password);
+        if (response.success) {
+            alert(response.message);
+            navigate('/auth/login');
+        } else {
+            setErrorMessage(response.message);
+        }
+    } catch (error) {
+        setErrorMessage("An error occurred. Please try again later.");
+    }       
   };
 
   return (
@@ -28,6 +46,7 @@ function Registration() {
             <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
             <input type="password" placeholder="Repeat Password" onChange={(e) => setRepeatPassword(e.target.value)} />
             <button onClick={handleSubmit}>Submit</button>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
         </div>
     </Background>
