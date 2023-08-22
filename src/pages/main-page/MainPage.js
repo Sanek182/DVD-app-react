@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DVDcard from '../../components/dvd-card/DVDcard';
-import { fetchDVDData } from '../../filler/api';
+import { fetchDVDData } from '../../api/dvdAPI';
 import Background from '../../components/static/Background';
 
 import { Outlet } from 'react-router-dom';
