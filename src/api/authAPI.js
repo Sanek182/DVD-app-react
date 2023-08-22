@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const loginUser = async (username, password) => {
   try {
-    const response = await axios.post('/auth/login', { username, password });
+    const response = await axios.post('http://localhost:3500/auth/login', { username, password });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -12,7 +12,7 @@ export const loginUser = async (username, password) => {
 
 export const registerUser = async (username, email, password) => {
   try {
-    const response = await axios.post('/auth/register', { username, email, password });
+    const response = await axios.post('http://localhost:3500/auth/register', { username, email, password });
     return response.data;
   } catch (error) {
     console.error(error);
