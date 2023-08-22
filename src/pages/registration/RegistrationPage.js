@@ -15,7 +15,19 @@ function Registration() {
 
   const handleSubmit = async () => {
     if (username.trim() === "" || email.trimEnd() === "" || password.trim() === "" || repeatPassword.trim() === "") {
-        setErrorMessage("Please enter all the required fields.");
+        setErrorMessage("Please fill in all the required fields.");
+        return;
+    }
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+        setErrorMessage("Please enter a valid email address.");
+        return;
+    }
+
+    const passPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{5,15}$/;
+    if (!passPattern.test(password)) {
+        setErrorMessage("Password must be between 5 and 15 characters, contain at least one letter, one number, and one symbol.");
         return;
     }
 
