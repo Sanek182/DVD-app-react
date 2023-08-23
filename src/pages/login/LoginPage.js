@@ -21,6 +21,8 @@ function Login() {
             const response = await loginUser(username, password);
             if (response.success) {
                 alert(response.message);
+                props.setIsAuthenticated(true);
+                props.setUsername(username);
                 navigate('/');
             } else {
             setErrorMessage(response.message);
