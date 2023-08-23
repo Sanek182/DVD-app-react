@@ -5,29 +5,34 @@ import Background from '../../components/static/Background';
 
 import { Outlet } from 'react-router-dom';
 
-function MainPage() {
+const movieIDs = [22257];
+
+function MainPage({ isAuthenticated, username, handleLogout }) {
     const [dvds, setDVDs] = useState([]);
-    const movieID = [22257];
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchDVDs = async () => {
-            const fetchedDVDs = [];
-            
-            for (const id of movieID) {
-                const dvdData = await fetchDVDData(id);
-                if (dvdData) {
-                fetchedDVDs.push(dvdData);
-                }
+            try {
+                const fetchedDVDs = await Promise.all(movieIDs.map(id => fetchDVDData(id)));
+                setDVDs(fetchedDVDs.filter(Boolean));
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
             }
-        
-            setDVDs(fetchedDVDs);
         };
     
         fetchDVDs();
-      }, []);
+    }, []);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
     
     return (
-        <Background >
+        <Background isAuthenticated={isAuthenticated} username={username} handleLogout={handleLogout} >
             <div className="dvd-container">
                 {dvds.map(dvd => (
                     <DVDcard key={dvd.id} dvd={dvd} />
