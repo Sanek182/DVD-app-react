@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function ResetPassPage() {
@@ -7,6 +8,7 @@ function ResetPassPage() {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { token } = useParams();
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (password.trim() === "") {

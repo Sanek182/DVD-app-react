@@ -6,10 +6,12 @@ import ProductPage from './pages/product-page/ProductPage';
 import LoginPage from './pages/login/LoginPage';
 import RegistrationPage from './pages/registration/RegistrationPage';
 import ResetPassPage from './pages/authentification/ResetPassPage';
-import ResetPassRequest from '.pages/authentification/ResetPassRequest';
+import ResetPassRequest from './pages/authentification/ResetPassRequest';
+import Header from './components/header/Header';
 
 
 function App() {
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
 
@@ -19,11 +21,11 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} >
         <Route path="/auth/login" element={<LoginPage setIsAuthenticated={setIsAuthenticated} setUsername={setUsername} />} />
-        </Route>
+      </Route>
+        <Route path="/movie/:id" element={<ProductPage />} />
         <Route path="/auth/registration" element={<RegistrationPage />} />
         <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
         <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
-        <Route path="/movie/:id" element={<ProductPage />} />
       </Routes>
     </Router>
   );
