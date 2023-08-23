@@ -5,6 +5,8 @@ import MainPage from './pages/main-page/MainPage';
 import ProductPage from './pages/product-page/ProductPage';
 import LoginPage from './pages/login/LoginPage';
 import RegistrationPage from './pages/registration/RegistrationPage';
+import ResetPassPage from './pages/authentification/ResetPassPage';
+import ResetPassRequest from '.pages/authentification/ResetPassRequest';
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route path="/auth/login" element={<LoginPage setIsAuthenticated={setIsAuthenticated} setUsername={setUsername} />} />
         </Route>
         <Route path="/auth/registration" element={<RegistrationPage />} />
+        <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
+        <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
         <Route path="/movie/:id" element={<ProductPage />} />
       </Routes>
     </Router>
