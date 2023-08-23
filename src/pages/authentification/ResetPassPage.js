@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 function ResetPassPage() {
   const [password, setPassword] = useState("");
@@ -29,15 +28,16 @@ function ResetPassPage() {
 
     try {
       const response = await resetUser(token, password);
+
       if (response.success) {
-          alert("Password has been successfully reset!");
-          navigate('/auth/login');
+        alert("Password has been successfully reset!");
+        navigate('/auth/login');
       } else {
-          setErrorMessage(response.message);
+        setErrorMessage(response.message);
       }
     } catch (error) {
       setErrorMessage("An error occurred. Please try again later.");
-    }       
+    } 
   };
 
   return (

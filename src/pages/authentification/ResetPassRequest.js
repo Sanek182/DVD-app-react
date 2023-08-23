@@ -8,7 +8,7 @@ function ResetPassRequest() {
 
     const handleResetRequest = async () => {
         if (email.trim() === "") {
-            setMessage("Please enter your email address.");
+            setMessage("Check you input box. It cannot be empty.");
             return;
         }
 
@@ -27,7 +27,7 @@ function ResetPassRequest() {
         <div className="reset-password-container">
             <button onClick={() => navigate('/')}>Close</button>
             <div className="reset-password-section">
-                <h2>Forgot password</h2>
+                <h2>Enter your email address</h2>
                 <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                 <button onClick={handleResetRequest}>Send reset link</button>
                 {message && <p className="message">{message}</p>}
