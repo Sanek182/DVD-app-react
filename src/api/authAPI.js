@@ -10,11 +10,13 @@ const apiRequest = async (url, data) => {
   }
 }
 
+const BASE_URL = 'http://localhost:3500/auth';
+
 export const loginUser = (username, password) => 
-  apiRequest('http://localhost:3500/auth/login', { username, password });
+  apiRequest(`${BASE_URL}/login`, { username, password });
 
 export const registerUser = (username, email, password) =>
-  apiRequest('http://localhost:3500/auth/register', { username, email, password });
+  apiRequest(`${BASE_URL}/register`, { username, email, password });
 
 export const resetUser = (token, newPassword) => 
-  apiRequest('http://localhost:3500/auth/reset-password', { token, newPassword });
+  apiRequest(`${BASE_URL}/reset-password`, { token, newPassword });
