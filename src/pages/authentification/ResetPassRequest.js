@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 function ResetPassRequest() {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
-    const navigate = useNavigate();
 
     const handleResetRequest = async () => {
         if (email.trim() === "") {
@@ -12,15 +11,18 @@ function ResetPassRequest() {
             return;
         }
 
-        // const response = await requestPasswordReset(email);
-        const response = { success: true, message: "Reset link sent to your email." };
-
-        if (response.success) {
-            alert(response.message);
-            navigate('/reset-password');
-        } else {
-            setMessage(response.message);
-        }
+        try {
+            const response = await fetch('/auth/reset-password-request', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email }),
+            });
+            
+            const data = await response.json();
+            setMessage(data.message);
+          } catch (error) {
+            setMessage('An error occurred. Please try again later.');
+          }
     };
 
     return (
