@@ -19,3 +19,13 @@ export const registerUser = async (username, email, password) => {
     return error.response.data;
   }
 };
+
+export const resetUser = async (token, password) => {
+  try {
+    const response = await axios.post('http://localhost:3500/auth/reset-password', { token, password });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error.response.data;
+  }
+};

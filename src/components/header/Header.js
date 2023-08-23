@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.css';
 
-function Header() {
+function Header(props) {
   return (
     <header className="header-container">
       <div className="logo-section">
@@ -16,7 +16,11 @@ function Header() {
         <a href="/products" className="products-icon">Products</a>
         <input type="search" className="search-window" placeholder="Search" />
         <a href="/cart" className="cart-icon">Cart</a>
-        <a href="/auth/login" className="login-button">Login</a>
+        {props.isAuthenticated ? (
+          <div className="user-greeting">Hello, {props.username}</div>
+        ) : (
+          <a href="/auth/login" className="login-button">Login</a>
+        )}
       </div>
     </header>
   );
