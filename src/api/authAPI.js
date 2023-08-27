@@ -1,4 +1,5 @@
 import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 const apiRequest = async (url, data) => {
   try {
@@ -17,6 +18,9 @@ export const loginUser = (username, password) =>
 
 export const registerUser = (username, email, password) =>
   apiRequest(`${BASE_URL}/register`, { username, email, password });
+
+export const requestResetUser = (email) => 
+  apiRequest(`${BASE_URL}/reset-password-request`, { email });
 
 export const resetUser = (token, newPassword) => 
   apiRequest(`${BASE_URL}/reset-password`, { token, newPassword });
