@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { resetUser } from '../../api/authAPI'
 
 function ResetPassPage() {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { token } = useParams();
+  const decodedToken = decodeURIComponent(token);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
@@ -27,7 +29,7 @@ function ResetPassPage() {
     }
 
     try {
-      const response = await resetUser(token, password);
+      const response = await resetUser(decodedToken, password);
 
       if (response.success) {
         alert("Password has been successfully reset!");

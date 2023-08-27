@@ -1,28 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { requestResetUser } from '../../api/authAPI'
 
 function ResetPassRequest() {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    const navigate = useNavigate();
 
     const handleResetRequest = async () => {
         if (email.trim() === "") {
-            setMessage("Check you input box. It cannot be empty.");
-            return;
+          setMessage("Check your input box. It cannot be empty.");
+          return;
         }
-
+      
         try {
-            const response = await fetch('http://localhost:3500/auth/reset-password-request', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email }),
-            });
-            
-            const data = await response.json();
-            setMessage(data.message);
-          } catch (error) {
-            setMessage('An error occurred. Please try again later.');
-          }
+          const data = await requestResetUser(email);
+          setMessage(data.message);
+        } catch (error) {
+          setMessage('An error occurred. Please try again later.');
+        }
     };
 
     return (
