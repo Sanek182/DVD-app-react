@@ -14,11 +14,22 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
   const [username, setUsername] = useState(localStorage.getItem('username') || '');
 
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    setUsername('');
-    localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('username');
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://localhost:3500/auth/logout', {
+        method: 'POST',
+        credentials: 'include',
+      });
+      console.log(response);
+      if (response.ok) {
+        setIsAuthenticated(false);
+        setUsername('');
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('username');
+      }
+    } catch (error) {
+      console.error("Couldn't logout:", error);
+    }
   };
 
   return (
