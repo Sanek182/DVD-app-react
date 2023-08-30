@@ -24,3 +24,6 @@ export const requestResetUser = (email) =>
 
 export const resetUser = (token, newPassword) => 
   apiRequest(`${BASE_URL}/reset-password`, { token, newPassword });
+
+export const logoutUser = () =>
+  apiRequest(`${BASE_URL}/logout`, {});

@@ -2,8 +2,11 @@ import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useAuth } from '../../pages/authentification/authContext';
 
-function Header({ isAuthenticated, username, handleLogout }) {
+function Header() {
+  const { isAuthenticated, username } = useAuth();
+
   return (
     <header className="header-container">
       <div className="logo-section">
@@ -18,14 +21,8 @@ function Header({ isAuthenticated, username, handleLogout }) {
         <Link to="/products" className="products-icon">Products</Link>
         <input type="search" className="search-window" placeholder="Search" />
         <Link to="/cart" className="cart-icon">Cart</Link>
-        {isAuthenticated ? (
-          <div>
-            <div className="user-greeting">Hello, {username}</div>
-            <button onClick={handleLogout} className="logout-button">Logout</button>
-          </div>
-        ) : (
-          <Link to="/auth/login" className="login-button">Login</Link>
-        )}
+        {isAuthenticated ? <span>Welcome, {username}</span> : <span>Please log in</span>}
+
       </div>
     </header>
   );

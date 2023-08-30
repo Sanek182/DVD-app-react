@@ -10,4 +10,4 @@ export async function fetchDVDData(id) {
       console.error("Error fetching data: ", error);
       return null;
     }
-  }
+}

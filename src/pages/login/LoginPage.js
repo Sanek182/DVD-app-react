@@ -23,8 +23,6 @@ function Login({ setIsAuthenticated, setUsername }) {
                 alert(response.message);
                 setIsAuthenticated(true);
                 setUsername(user);
-                localStorage.setItem('isAuthenticated', 'true');
-                localStorage.setItem('username', user);
                 navigate('/');
             } else {
             setErrorMessage(response.message);
