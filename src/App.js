@@ -11,7 +11,7 @@ import ResetPassRequest from './pages/authentification/ResetPassRequest';
 
 function App() {
 
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState(localStorage.getItem('username') || '');
 
   const handleLogout = async () => {
