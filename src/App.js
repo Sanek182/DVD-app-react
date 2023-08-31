@@ -7,43 +7,53 @@ import Login from './pages/login/LoginPage';
 import RegistrationPage from './pages/registration/RegistrationPage';
 import ResetPassPage from './pages/authentification/ResetPassPage';
 import ResetPassRequest from './pages/authentification/ResetPassRequest';
+import { logoutUser } from './api/authAPI';
+import { AuthProvider } from './pages/authentification/authContext';
 
 
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState(localStorage.getItem('username') || '');
+  const [username, setUsername] = useState('');
 
-  const handleLogout = async () => {
-    try {
-      const response = await fetch('http://localhost:3500/auth/logout', {
-        method: 'POST',
-        credentials: 'include',
-      });
-      console.log(response);
-      if (response.ok) {
-        setIsAuthenticated(false);
-        setUsername('');
-        localStorage.removeItem('isAuthenticated');
-        localStorage.removeItem('username');
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      const response = await fetch('/api/checkAuth');
+      const data = await response.json();
+
+      if (data.isAuthenticated) {
+        setIsAuthenticated(true);
+        setUsername(data.username);
       }
-    } catch (error) {
-      console.error("Couldn't logout:", error);
+    };
+
+    checkAuthStatus();
+  }, []);
+  
+  const handleLogout = async () => {
+    const response = await logoutUser();
+    if (response.success) {
+      setIsAuthenticated(false);
+      setUsername('');
+    } else {
+      console.error("Couldn't logout:", response.message);
     }
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage isAuthenticated={isAuthenticated} username={username} handleLogout={handleLogout} />} >
-          <Route path="/auth/login" element={<Login setIsAuthenticated={setIsAuthenticated} setUsername={setUsername} />} />
-        </Route>
-        <Route path="/movie/:id" element={<ProductPage />} />
-        <Route path="/auth/registration" element={<RegistrationPage />} />
-        <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
-        <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainPage isAuthenticated={isAuthenticated} username={username} handleLogout={handleLogout} />} >
+            <Route path="/auth/login" element={<Login setIsAuthenticated={setIsAuthenticated} setUsername={setUsername} />} />
+          </Route>
+          <Route path="/movie/:id" element={<ProductPage />} />
+          <Route path="/auth/registration" element={<RegistrationPage />} />
+          <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
+          <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

@@ -1,46 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import DVDcard from '../../components/dvd-card/DVDcard';
-import { fetchDVDData } from '../../api/dvdAPI';
 import Background from '../../components/static/Background';
-
 import { Outlet } from 'react-router-dom';
+import useFetchDVD from '../../customHooks/useFetchDVD';
+import { useAuth } from '../authentification/authContext';
 
 const movieIDs = [22257];
 
-function MainPage({ isAuthenticated, username, handleLogout }) {
-    const [dvds, setDVDs] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+function MainPage() {
+    const { isAuthenticated, username } = useAuth();
 
-    useEffect(() => {
-        const fetchDVDs = async () => {
-            try {
-                const fetchedDVDs = await Promise.all(movieIDs.map(id => fetchDVDData(id)));
-                setDVDs(fetchedDVDs.filter(Boolean));
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-    
-        fetchDVDs();
-    }, []);
+    const { dvds, loading, error } = useFetchDVD(movieIDs);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
-    
     return (
-        <Background isAuthenticated={isAuthenticated} username={username} handleLogout={handleLogout} >
-            <div className="dvd-container">
-                {dvds.map(dvd => (
-                    <DVDcard key={dvd.id} dvd={dvd} />
-                ))}
-            </div>
-            <Outlet />
-        </ Background>
-    )
+        <Background isAuthenticated={isAuthenticated} username={username} handleLogout={handleLogout}>
+        <div className="dvd-container">
+            {dvds.map(dvd => (
+            <DVDcard key={dvd.id} dvd={dvd} />
+            ))}
+        </div>
+        <Outlet />
+        </Background>
+    );
 }
 
 export default MainPage;
