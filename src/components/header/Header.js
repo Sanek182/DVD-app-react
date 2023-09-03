@@ -1,8 +1,7 @@
 import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { useAuth } from '../../pages/authentification/authContext';
+import { useAuth } from '../../pages/authentification/AuthContext';
 
 function Header() {
   const { isAuthenticated, username } = useAuth();
@@ -21,17 +20,19 @@ function Header() {
         <Link to="/products" className="products-icon">Products</Link>
         <input type="search" className="search-window" placeholder="Search" />
         <Link to="/cart" className="cart-icon">Cart</Link>
-        {isAuthenticated ? <span>Welcome, {username}</span> : <span>Please log in</span>}
-
+        {isAuthenticated ? (
+          <>
+            <span>Welcome, {username}</span>
+            <Link to="/logout">Log Out</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Log In</Link>
+          </>
+        )}
       </div>
     </header>
   );
 }
-
-Header.propTypes = {
-  isAuthenticated: PropTypes.bool,
-  username: PropTypes.string,
-  handleLogout: PropTypes.func,
-};
 
 export default Header;

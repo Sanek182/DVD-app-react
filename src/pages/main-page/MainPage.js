@@ -3,7 +3,7 @@ import DVDcard from '../../components/dvd-card/DVDcard';
 import Background from '../../components/static/Background';
 import { Outlet } from 'react-router-dom';
 import useFetchDVD from '../../customHooks/useFetchDVD';
-import { useAuth } from '../authentification/authContext';
+import { useAuth } from '../../pages/authentification/AuthContext';
 
 const movieIDs = [22257];
 
@@ -16,7 +16,7 @@ function MainPage() {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <Background isAuthenticated={isAuthenticated} username={username} handleLogout={handleLogout}>
+        <Background >
         <div className="dvd-container">
             {dvds.map(dvd => (
             <DVDcard key={dvd.id} dvd={dvd} />

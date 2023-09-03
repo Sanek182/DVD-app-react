@@ -11,19 +11,21 @@ export const AuthProvider = ({ children }) => {
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    // Fetch user authentication status from server
-    // You should replace this with your actual fetch function
-    const fetchAuthStatus = async () => {
-      const res = await fetch('/api/checkAuth');
-      const data = await res.json();
+    const checkAuthStatus = async () => {
+      try {
+        const response = await fetch('/api/checkAuth');
+        const data = await response.json();
 
-      if (data.isAuthenticated) {
-        setIsAuthenticated(true);
-        setUsername(data.username);
+        if (data.isAuthenticated) {
+          setIsAuthenticated(true);
+          setUsername(data.username);
+        }
+      } catch (error) {
+        console.error("Error fetching auth status:", error);
       }
     };
 
-    fetchAuthStatus();
+    checkAuthStatus();
   }, []);
 
   const value = {
