@@ -1,14 +1,14 @@
 import React from 'react';
 import DVDcard from '../../components/dvd-card/DVDcard';
-import Background from '../../components/static/Background';
+import Background from '../../components/container/Background';
 import { Outlet } from 'react-router-dom';
 import useFetchDVD from '../../customHooks/useFetchDVD';
-import { useAuth } from '../../pages/authentification/AuthContext';
+import { useAuth } from '../../components/authentication/authContext';
 
 const movieIDs = [22257];
 
 function MainPage() {
-    const { isAuthenticated, username } = useAuth();
+//    const { isAuthenticated, username } = useAuth();
 
     const { dvds, loading, error } = useFetchDVD(movieIDs);
 

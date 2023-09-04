@@ -7,7 +7,7 @@ export const useAuth = () => {
   return useContext(authContext);
 };
 
-export const authProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
 

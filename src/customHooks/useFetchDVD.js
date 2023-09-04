@@ -21,7 +21,7 @@ const useFetchDVD = (movieIDs) => {
     fetchDVD();
   }, [movieIDs]);
 
-  return { dvd, loading, error };
+  return { dvds: dvd, loading, error };
 };
 
 export default useFetchDVD;

@@ -9,11 +9,16 @@ function Login({ setIsAuthenticated, setUsername }) {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [isActive, setIsActive] = useState(false);
+
+    useEffect(() => {
+        setIsActive(true);
+    }, []);
 
     const navigate = useNavigate();
 
     const handleLogin = async () => {
-        const emptyFieldCheck = isEmptyField(username, password);
+        const emptyFieldCheck = isEmptyField(user, password);
 
         if (!emptyFieldCheck.isValid) {
             setErrorMessage(emptyFieldCheck.errorMessage);
@@ -36,8 +41,8 @@ function Login({ setIsAuthenticated, setUsername }) {
     };
 
     return (
-        <div className="login-container">
-            <button onClick={() => navigate('/')}>Close</button>
+        <div className={isActive ? "login-section.active" : "login-container"}>
+            <button onClick={() => setIsActive(false)}>Close</button>
             <div className="login-section">
                 <h2>Please login</h2>
                 <input type="text" placeholder="Username" onChange={(e) => setUser(e.target.value)} />
