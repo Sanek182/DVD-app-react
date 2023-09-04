@@ -1,20 +1,20 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { checkAuth } from '../../api/authAPI';
 
-const AuthContext = createContext();
+const authContext = createContext();
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  return useContext(authContext);
 };
 
-export const AuthProvider = ({ children }) => {
+export const authProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
 
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await fetch('/api/checkAuth');
-        const data = await response.json();
+        const data = await checkAuth();
 
         if (data.isAuthenticated) {
           setIsAuthenticated(true);
@@ -35,5 +35,5 @@ export const AuthProvider = ({ children }) => {
     setUsername,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return <authContext.Provider value={value}>{children}</authContext.Provider>;
 };

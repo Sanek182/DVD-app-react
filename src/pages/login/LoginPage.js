@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../api/authAPI';
+import { isEmptyField } from '../../components/validation/inputValidation';
 
 import "./LoginPage.css";
 
@@ -12,8 +13,10 @@ function Login({ setIsAuthenticated, setUsername }) {
     const navigate = useNavigate();
 
     const handleLogin = async () => {
-        if (user.trim() === "" || password.trim() === "") {
-            setErrorMessage("Please enter all the required fields.");
+        const emptyFieldCheck = isEmptyField(username, password);
+
+        if (!emptyFieldCheck.isValid) {
+            setErrorMessage(emptyFieldCheck.errorMessage);
             return;
         }
 

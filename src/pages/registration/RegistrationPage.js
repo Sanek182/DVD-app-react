@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Background from '../../components/static/Background';
+import Background from '../../components/container/Background';
 import { registerUser } from '../../api/authAPI';
 import { useNavigate } from 'react-router-dom'; 
 import "./RegistrationPage.css";
+import { isEmptyField, isValidEmail, isValidPassword, doPasswordsMatch } from '../../components/validation/inputValidation';
 
 function Registration() {
   const [username, setUsername] = useState("");
@@ -14,25 +15,28 @@ function Registration() {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (username.trim() === "" || email.trimEnd() === "" || password.trim() === "" || repeatPassword.trim() === "") {
-        setErrorMessage("Please fill in all the required fields.");
+    const emptyFieldCheck = isEmptyField(username, email, password, repeatPassword);
+    const emailValidation = isValidEmail(email);
+    const passwordValidation = isValidPassword(password);
+    const passwordMatchValidation = doPasswordsMatch(password, repeatPassword);
+
+    if (!emptyFieldCheck.isValid) {
+        setErrorMessage(emptyFieldCheck.errorMessage);
         return;
     }
 
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailPattern.test(email)) {
-        setErrorMessage("Please enter a valid email address.");
+    if (!emailValidation.isValid) {
+        setErrorMessage(emailValidation.errorMessage);
         return;
     }
 
-    const passPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{5,15}$/;
-    if (!passPattern.test(password)) {
-        setErrorMessage("Password must be between 5 and 15 characters, contain at least one letter, one number, and one symbol.");
+    if (!passwordValidation.isValid) {
+        setErrorMessage(passwordValidation.errorMessage);
         return;
     }
 
-    if (password !== repeatPassword) {
-        setErrorMessage("Passwords do not match!");
+    if (!passwordMatchValidation.isValid) {
+        setErrorMessage(passwordMatchValidation.errorMessage);
         return;
     }
     try {

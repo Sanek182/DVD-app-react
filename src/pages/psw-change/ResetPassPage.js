@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { resetUser } from '../../api/authAPI'
+import { resetUser } from '../../api/authAPI';
+import { isEmptyField, isValidPassword, doPasswordsMatch } from '../../components/validation/inputValidation';
 
 function ResetPassPage() {
   const [password, setPassword] = useState("");
@@ -12,20 +13,23 @@ function ResetPassPage() {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (password.trim() === "") {
-        setErrorMessage("Please enter a new password.");
-        return;
+    const emptyFieldCheck = isEmptyField(username, email, password, repeatPassword);
+    const passwordValidation = isValidPassword(password);
+    const passwordMatchValidation = doPasswordsMatch(password, repeatPassword);
+
+    if (!emptyFieldCheck.isValid) {
+      setErrorMessage(emptyFieldCheck.errorMessage);
+      return;
     }
 
-    const passPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{5,15}$/;
-    if (!passPattern.test(password)) {
-        setErrorMessage("Password must be between 5 and 15 characters, contain at least one letter, one number, and one symbol.");
-        return;
+    if (!passwordValidation.isValid) {
+      setErrorMessage(passwordValidation.errorMessage);
+      return;
     }
 
-    if (password !== repeatPassword) {
-        setErrorMessage("Passwords do not match!");
-        return;
+    if (!passwordMatchValidation.isValid) {
+      setErrorMessage(passwordMatchValidation.errorMessage);
+      return;
     }
 
     try {

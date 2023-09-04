@@ -27,3 +27,13 @@ export const resetUser = (token, newPassword) =>
 
 export const logoutUser = () =>
   apiRequest(`${BASE_URL}/logout`, {});
+
+export const checkAuth = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/checkAuth`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return error.response.data;
+  }
+};
