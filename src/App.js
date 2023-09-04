@@ -5,9 +5,9 @@ import MainPage from './pages/main-page/MainPage';
 import ProductPage from './pages/product-page/ProductPage';
 import Login from './pages/login/LoginPage';
 import RegistrationPage from './pages/registration/RegistrationPage';
-import ResetPassPage from './pages/authentification/ResetPassPage';
-import ResetPassRequest from './pages/authentification/ResetPassRequest';
-import { AuthProvider } from '../../pages/authentification/AuthContext';
+import ResetPassPage from './pages/psw-change/ResetPassPage';
+import ResetPassRequest from './pages/psw-change/ResetPassRequest';
+import { AuthProvider } from './components/authentication/authContext';
 
 function App() {
 
@@ -16,8 +16,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainPage />} >
-            <Route path="/auth/login" element={<Login />} />
           </Route>
+          <Route path="/auth/login" element={<Login />} />
           <Route path="/movie/:id" element={<ProductPage />} />
           <Route path="/auth/registration" element={<RegistrationPage />} />
           <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />

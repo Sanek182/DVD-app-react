@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../authentication/AuthContext';
+import { useAuth } from '../authentication/authContext';
 
 function Header() {
   const { isAuthenticated, username } = useAuth();
+  const [showLogin, setShowLogin] = useState(false);
 
   return (
     <header className="header-container">
       <div className="logo-section">
-        <img src="path/to/logo.png" alt="Logo" className="logo" />
-        <h1>Site Title</h1>
+        <img src="/logo.png" alt="Logo" className="logo" />
+        <h1>AlexDVD LLC</h1>
       </div>
       <div className="navigation-section">
         <select className="dropdown-bar">
-          <option value="option1">Option 1</option>
+          <option value="option1">Site Navigation</option>
           <option value="option2">Option 2</option>
         </select>
         <Link to="/products" className="products-icon">Products</Link>
@@ -23,11 +24,11 @@ function Header() {
         {isAuthenticated ? (
           <>
             <span>Welcome, {username}</span>
-            <Link to="/logout">Log Out</Link>
+            <Link to="auth/logout">Log Out</Link>
           </>
         ) : (
           <>
-            <Link to="/login">Log In</Link>
+            <Link to="auth/login">Log In</Link>
           </>
         )}
       </div>
