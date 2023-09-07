@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Background from '../../components/container/Background';
 import { registerUser } from '../../api/authAPI';
 import { useNavigate } from 'react-router-dom'; 
 import "./RegistrationPage.css";
 import { isEmptyField, isValidEmail, isValidPassword, doPasswordsMatch } from '../../components/validation/inputValidation';
 
 function Registration() {
+    console.log("Registration component rendered");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +53,7 @@ function Registration() {
   };
 
   return (
-    <Background>
+    <main>
         <div className="registration-container">
         <h2>Please register</h2>
         <div className="registration-form">
@@ -65,7 +65,7 @@ function Registration() {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
         </div>
-    </Background>
+    </main>
   );
 }
 

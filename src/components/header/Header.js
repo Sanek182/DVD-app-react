@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../authentication/authContext';
+import Login from '../../pages/login/LoginPage';
 
 function Header() {
   const { isAuthenticated, username } = useAuth();
@@ -29,6 +30,7 @@ function Header() {
         ) : (
           <>
             <button onClick={() => setShowLogin(true)}>Log In</button>
+            {showLogin && <Login onClose={() => setShowLogin(false)} />}
           </>
         )}
       </div>
