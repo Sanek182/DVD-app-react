@@ -5,7 +5,7 @@ import { isEmptyField } from '../../components/validation/inputValidation';
 import { useAuth } from "../../components/authentication/authContext";
 import "./LoginPage.css";
 
-function Login() {
+function Login(props) {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
@@ -44,7 +44,7 @@ function Login() {
 
     return (
         <div className={isActive ? "login-section.active" : "login-container"}>
-            <button onClick={onClose}>Close</button>
+            <button onClick={props.onClose}>Close</button>
             <div className="login-section">
                 <h2>Please login</h2>
                 <input type="text" placeholder="Username" onChange={(e) => setUser(e.target.value)} />
@@ -53,13 +53,13 @@ function Login() {
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 <div className="registration-links">
                 <p>Do not have an account on our site yet?</p>
-                <button onClick={() => navigate('/auth/registration')}>Registration</button>
+                <button onClick={() => navigate('/auth/register')}>Registration</button>
                 <button onClick={() => navigate('/auth/reset-password-request')}>Forgot password?</button>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Login;
 
