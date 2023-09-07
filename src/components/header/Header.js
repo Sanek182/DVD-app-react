@@ -28,7 +28,7 @@ function Header() {
           </>
         ) : (
           <>
-            <Link to="auth/login">Log In</Link>
+            <button onClick={() => setShowLogin(true)}>Log In</button>
           </>
         )}
       </div>
