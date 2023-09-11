@@ -10,28 +10,29 @@ import { AuthProvider } from './components/authentication/authContext';
 import Logout from './pages/login/LogoutPage';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
+import { LoginProvider } from './pages/login/LoginState';
 
 function App() {
 
-  const [showLogin, setShowLogin] = useState(false);
-
   return (
-    <AuthProvider>
-      <Router>
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<MainPage showLogin={showLogin} setShowLogin={setShowLogin} />} />
-            <Route path="/auth/logout" element={<Logout />} />
-            <Route path="/movie/:id" element={<ProductPage />} />
-            <Route path="/auth/register" element={<Registration />} />
-            <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
-            <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </Router>
-    </AuthProvider>
+    <Router>
+      <AuthProvider>
+        <LoginProvider>
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/auth/logout" element={<Logout />} />
+              <Route path="/movie/:id" element={<ProductPage />} />
+              <Route path="/auth/register" element={<Registration />} />
+              <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
+              <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </LoginProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 
