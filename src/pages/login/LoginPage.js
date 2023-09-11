@@ -4,17 +4,14 @@ import { loginUser } from '../../api/authAPI';
 import { isEmptyField } from '../../components/validation/inputValidation';
 import { useAuth } from "../../components/authentication/authContext";
 import "./LoginPage.css";
+import { useLoginAvailable } from "./LoginState";
 
-function Login(props) {
+function Login() {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const [isActive, setIsActive] = useState(false);
     const { setIsAuthenticated, setUsername } = useAuth();
-
-    useEffect(() => {
-        setIsActive(true);
-    }, []);
+    const { closeLoginBar } = useLoginAvailable();
 
     const navigate = useNavigate();
 
@@ -33,7 +30,7 @@ function Login(props) {
                 setIsAuthenticated(true);
                 setUsername(user);
                 navigate('/');
-                onClose();
+                closeLoginBar();
             } else {
             setErrorMessage(response.message);
             }
@@ -42,9 +39,14 @@ function Login(props) {
         }
     };
 
+    const handleClose = () => {
+        closeLoginBar();
+        navigate(-1);
+    };
+
     return (
-        <div className={isActive ? "login-section.active" : "login-container"}>
-            <button onClick={props.onClose}>Close</button>
+        <div className="login-section.active">
+            <button onClick={handleClose}>Close</button>
             <div className="login-section">
                 <h2>Please login</h2>
                 <input type="text" placeholder="Username" onChange={(e) => setUser(e.target.value)} />

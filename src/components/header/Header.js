@@ -3,10 +3,11 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../authentication/authContext';
 import Login from '../../pages/login/LoginPage';
+import { useLoginAvailable } from '../../pages/login/LoginState';
 
 function Header() {
   const { isAuthenticated, username } = useAuth();
-  const [showLogin, setShowLogin] = useState(false);
+  const { showLogin, setLoginBar } = useLoginAvailable();
 
   return (
     <header className="header-container">
@@ -29,8 +30,8 @@ function Header() {
           </>
         ) : (
           <>
-            <button onClick={() => setShowLogin(true)}>Log In</button>
-            {showLogin && <Login onClose={() => setShowLogin(false)} />}
+            <button onClick={setLoginBar}>Log In</button>
+            {showLogin && <Login />}
           </>
         )}
       </div>

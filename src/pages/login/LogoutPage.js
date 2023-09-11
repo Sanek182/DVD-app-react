@@ -9,16 +9,20 @@ function Logout() {
 
   useEffect(() => {
     const handleLogout = async () => {
-      const response = await logoutUser();
-      if (response.success) {
-        setIsAuthenticated(false);
-        setUsername('');
-        navigate('/');
-      } else {
-        console.error("Couldn't logout:", response.message);
-      }
+      try {
+        const response = await logoutUser();
+        if (response.success) {
+          setIsAuthenticated(false);
+          setUsername('');
+          navigate('/');
+        } else {
+          console.error("Couldn't logout:", response.message);
+        }
+      } catch (error) {
+          alert("An error occurred during logout. Please try again.");
+        }
     };
-
+    
     handleLogout();
   }, [navigate]);
 
