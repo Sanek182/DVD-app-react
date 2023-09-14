@@ -13,7 +13,7 @@ function ResetPassPage() {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const emptyFieldCheck = isEmptyField(username, email, password, repeatPassword);
+    const emptyFieldCheck = isEmptyField(password, repeatPassword);
     const passwordValidation = isValidPassword(password);
     const passwordMatchValidation = doPasswordsMatch(password, repeatPassword);
 

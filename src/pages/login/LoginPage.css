@@ -1,30 +1,33 @@
 .login-container {
     position: fixed;
     top: 0;
-    width: 30%;
-    height: 100%;
-    background:rgba(255,255,255,0.9);
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
-    justify-content: center;
+    justify-content: flex-end; 
     align-items: center;
-}
-  
-.login-section {
-    position: absolute;
-    right: -33%;
-    width: 33%;
-    background-color: lightblue;
-    padding: 20px;
-    transition: all 0.3s ease;
-    transition: transform 0.3s ease-out;
+    z-index: 1000; 
+    overflow: hidden;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-out;
 }
 
-.login-section.active {
-    right: 0;
+.login-container.active {
+    transform: translateX(0);
 }
-  
-.registration-links {
-    text-align: center;
-    margin-top: 10px;
+
+.login-section {
+    width: 30%;
+    height: 100%;
+    background-color: #fff; 
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-  
+
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+    }
+}

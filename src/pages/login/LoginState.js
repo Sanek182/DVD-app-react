@@ -12,9 +12,10 @@ export function LoginProvider({ children }) {
     const location = useLocation();
 
     useEffect(() => {
+        console.log("Pathname is:", location.pathname);
         if (location.pathname === "/auth/login") {
             setShowLogin(true);
-        } else {
+        } else if (location.pathname !== "/auth/login") {
             setShowLogin(false);
         }
     }, [location.pathname]);
