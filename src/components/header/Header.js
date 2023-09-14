@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../authentication/authContext';
@@ -8,6 +8,10 @@ import { useLoginAvailable } from '../../pages/login/LoginState';
 function Header() {
   const { isAuthenticated, username } = useAuth();
   const { showLogin, setLoginBar } = useLoginAvailable();
+
+  useEffect(() => {
+    console.log("showLogin value:", showLogin);
+}, [showLogin]);
 
   return (
     <header className="header-container">

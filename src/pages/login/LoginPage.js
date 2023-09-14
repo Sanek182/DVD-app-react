@@ -11,7 +11,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const { setIsAuthenticated, setUsername } = useAuth();
-    const { closeLoginBar } = useLoginAvailable();
+    const { showLogin, closeLoginBar } = useLoginAvailable();
 
     const navigate = useNavigate();
 
@@ -29,7 +29,6 @@ function Login() {
                 alert(response.message);
                 setIsAuthenticated(true);
                 setUsername(user);
-                navigate('/');
                 closeLoginBar();
             } else {
             setErrorMessage(response.message);
@@ -41,11 +40,12 @@ function Login() {
 
     const handleClose = () => {
         closeLoginBar();
-        navigate(-1);
     };
 
+    console.log("Rendering Login component");
+
     return (
-        <div className="login-section.active">
+        <div className={showLogin ? "login-container active" : "login-container"}>
             <button onClick={handleClose}>Close</button>
             <div className="login-section">
                 <h2>Please login</h2>

@@ -1,20 +1,20 @@
-import React from 'react';
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
+//import React from 'react';
+//import Header from '../header/Header';
+//import Footer from '../footer/Footer';
 
-import './Background.css';
+//import './Background.css';
 
-function Background() {
+//function Background() {
 
-  return (
-    <div>
-      <Header />
-      <div className="background-container">
-        {}
-      </div>
-      <Footer />
-    </div>
-  );
-}
+//  return (
+//    <div>
+//      <Header />
+//      <div className="background-container">
+//        {}
+//      </div>
+//      <Footer />
+//    </div>
+//  );
+//}
 
-export default Background;
+//export default Background;

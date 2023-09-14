@@ -21,6 +21,7 @@ function App() {
           <Header />
           <main>
             <Routes>
+              <Route path="/auth/login" element={<MainPage />} />
               <Route path="/" element={<MainPage />} />
               <Route path="/auth/logout" element={<Logout />} />
               <Route path="/movie/:id" element={<ProductPage />} />

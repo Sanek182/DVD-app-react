@@ -2,8 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchDVDData } from "../../api/dvdAPI";
-import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
 
 function ProductPage() {
     let { id } = useParams();
@@ -20,7 +18,6 @@ function ProductPage() {
 
     return (
         <div>
-            <Header />
             { dvd ? (
                 <>
                     <h1>{dvd.title}</h1>
@@ -33,7 +30,6 @@ function ProductPage() {
             ) : (
                 "Loading..."
             )}
-            <Footer />
         </div>
     )
 }
