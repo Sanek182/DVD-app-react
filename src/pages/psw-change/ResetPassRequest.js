@@ -1,37 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from 'react-router-dom';
-import { requestResetUser } from '../../api/authAPI'
+import toastr from "toastr";
+import { requestResetUser } from '../../api/authAPI';
+import { inputValidation } from "../../components/validation/inputValidation";
 
 function ResetPassRequest() {
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
-    const handleResetRequest = async () => {
-        if (email.trim() === "") {
-          setMessage("Check your input box. It cannot be empty.");
-          return;
-        }
-      
-        try {
-          const data = await requestResetUser(email);
-          setMessage(data.message);
-        } catch (error) {
-          setMessage('An error occurred. Please try again later.');
-        }
+    const onSubmit = async (data) => {
+      try {
+        const response = await requestResetUser(data.email);
+        toastr.success(response.message);
+      } catch (error) {
+        toastr.error("An error occurred. Please try again later.");
+      }
     };
 
+    const fields = [
+      {
+        name: 'email',
+        type: 'email',
+        placeholder: 'Email',
+        rules: { required: 'Email is required' }
+      }
+    ];
+
     return (
-        <div className="reset-password-container">
-            <button onClick={() => navigate('/')}>Close</button>
-            <div className="reset-password-section">
-                <h2>Enter your email address</h2>
-                <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-                <button onClick={handleResetRequest}>Send reset link</button>
-                {message && <p className="message">{message}</p>}
-            </div>
+      <div className="reset-password-container">
+        <button onClick={() => navigate("/")}>Close</button>
+        <div className="reset-password-section">
+          <h2>Enter your email address</h2>
+          <inputValidation fields={fields} onSubmit={onSubmit} />
         </div>
+      </div>
     );
-}
+};
 
 export default ResetPassRequest;
