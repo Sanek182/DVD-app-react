@@ -1,31 +1,29 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logoutUser } from '../../api/authAPI'
 import { useAuth } from '../../components/authentication/authContext';
+import toastr from 'toastr';
 
 function Logout() {
-  const navigate = useNavigate();
   const { setIsAuthenticated, setUsername } = useAuth();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const handleLogout = async () => {
-      try {
-        const response = await logoutUser();
-        if (response.success) {
-          setIsAuthenticated(false);
-          setUsername('');
-          navigate('/');
-        } else {
-          console.error("Couldn't logout:", response.message);
-        }
-      } catch (error) {
-          alert("An error occurred during logout. Please try again.");
-        }
-    };
-    
-    handleLogout();
-  }, [navigate]);
+  const handleLogout = () => {
+    try {
+        setIsAuthenticated(false);
+        setUsername(null);
+        toastr.success('Successfully logged out.');
+        navigate('/');
+    } catch (error) {
+        toastr.error('An error occurred while logging out.');
+    }
+  };
 
-  return null;
-}
+  return (
+    <div>
+      <p>Are you sure you want to log out?</p>
+      <button onClick={handleLogout}>Yes, Log Me Out</button>
+    </div>
+  );
+};
+
 export default Logout;
