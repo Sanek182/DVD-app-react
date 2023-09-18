@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import toastr from "toastr";
 import { requestResetUser } from '../../api/authAPI';
-import { inputValidation } from "../../components/validation/inputValidation";
+import { InputValidation } from "../../components/validation/InputValidation";
 
 function ResetPassRequest() {
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ function ResetPassRequest() {
         <button onClick={() => navigate("/")}>Close</button>
         <div className="reset-password-section">
           <h2>Enter your email address</h2>
-          <inputValidation fields={fields} onSubmit={onSubmit} />
+          <InputValidation fields={fields} onSubmit={onSubmit} />
         </div>
       </div>
     );

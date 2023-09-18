@@ -4,12 +4,10 @@ import { Outlet } from 'react-router-dom';
 import useFetchDVD from '../../customHooks/useFetchDVD';
 import { useAuth } from '../../components/authentication/authContext';
 
-const movieIDs = [22257];
-
 function MainPage() {
 //    const { isAuthenticated, username } = useAuth();
 
-    const { dvds, loading, error } = useFetchDVD(movieIDs);
+    const { dvds, loading, error } = useFetchDVD();
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
