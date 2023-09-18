@@ -2,10 +2,10 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../api/authAPI';
 import { useAuth } from "../../components/authentication/authContext";
-import "./LoginPage.css";
 import { useLoginAvailable } from "./LoginState";
-import { inputValidation } from "../../components/validation/inputValidation";
+import { InputValidation } from "../../components/validation/InputValidation";
 import toastr from 'toastr';
+import "./LoginPage.css";
 
 function Login() {
     const { setIsAuthenticated, setUsername } = useAuth();
@@ -41,13 +41,13 @@ function Login() {
         {
             name: 'user',
             type: 'text',
-            placeholder: 'Username',
+            placeholder: 'USERNAME',
             rules: { required: 'Username is required' }
         },
         {
             name: 'password',
             type: 'password',
-            placeholder: 'Password',
+            placeholder: 'PASSWORD',
             rules: { required: 'Password is required' }
         }
     ];
@@ -56,12 +56,13 @@ function Login() {
         <div className={showLogin ? "login-container active" : "login-container"}>
             <button onClick={handleClose}>Close</button>
             <div className="login-section">
-                <h2>Please login</h2>
-                <inputValidation fields={fields} onSubmit={handleLogin} />
+                <h2>PLEASE LOG IN</h2>
+                <InputValidation fields={fields} onSubmit={handleLogin} />
                 <div className="registration-links">
-                    <p>Do not have an account on our site yet?</p>
-                    <button onClick={() => navigate('/auth/register')}>Registration</button>
-                    <button onClick={() => navigate('/auth/reset-password-request')}>Forgot password?</button>
+                    <p><i>Forgot your password?</i></p>
+                    <button onClick={() => navigate('/auth/reset-password-request')}>Reset Password</button>
+                    <p><i>Do not have an account on our site yet?</i></p>
+                    <button onClick={() => navigate('/auth/register')}>Register Me</button>
                 </div>
             </div>
         </div>

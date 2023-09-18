@@ -1,37 +1,36 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchDVDData } from "../../api/dvdAPI";
+import { fetchDVDById } from "../../api/dvdAPI";
 
 function ProductPage() {
-    let { id } = useParams();
-    const [ dvd, setDVD ] = useState(null);
+  let { id } = useParams();
+  const [ dvd, setDVD ] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const dvdData = await fetchDVDData(id);
-            setDVD(dvdData);
-        };
-    
-        fetchData();
-    }, [id]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const dvdData = await fetchDVDById(id);
+      setDVD(dvdData);
+    };
 
-    return (
-        <div>
-            { dvd ? (
-                <>
-                    <h1>{dvd.title}</h1>
-                    <h2>{dvd.release_date.slice(0, 4)}</h2>
-                    <p>{dvd.genres.map(genre => genre.name).join(', ')}</p>
-                    <p>{dvd.production_countries.map(country => country.name).join(', ')}</p>
-                    <p>{dvd.vote_average}</p>
-                    <p>{dvd.overview}</p>
-                </>
-            ) : (
-                "Loading..."
-            )}
-        </div>
-    )
+    fetchData();
+  }, [id]);
+
+  return (
+    <div>
+      { dvd ? (
+        <>
+          <h1>{dvd.movie_title}</h1>
+          <h2>{dvd.year_produced}</h2>
+          <p>{dvd.movie_country}</p>
+          <p>{dvd.movie_description}</p>
+          <p>{dvd.product_type}</p>
+        </>
+      ) : (
+        "Loading..."
+      )}
+    </div>
+  );
 }
 
 export default ProductPage;

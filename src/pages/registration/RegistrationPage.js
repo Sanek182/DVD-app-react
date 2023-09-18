@@ -1,7 +1,8 @@
 import React from "react";
 import { registerUser } from '../../api/authAPI';
-import { useNavigate } from 'react-router-dom'; 
-import { inputValidation } from "../../components/validation/inputValidation";
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { InputValidation } from "../../components/validation/InputValidation";
 import toastr from "toastr";
 import "./RegistrationPage.css";
 
@@ -21,7 +22,6 @@ function Registration() {
           toastr.error("An error occurred. Please try again later.");
         }
       };
-      const password = watch("password");
 
       const fields = [
         {
@@ -58,9 +58,6 @@ function Registration() {
           name: 'repeatPassword',
           type: 'password',
           placeholder: 'Repeat Password',
-          rules: {
-            validate: value => value === password || "The passwords do not match"
-          }
         }
       ];
 
@@ -68,7 +65,7 @@ function Registration() {
     <main>
         <div className="registration-container">
         <h2>Please register</h2>
-        <inputValidation fields={fields} onSubmit={onSubmit} />
+        <InputValidation fields={fields} onSubmit={onSubmit} />
       </div>
     </main>
     );

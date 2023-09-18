@@ -1,13 +1,23 @@
-const API_Key = `ffd66deb8ab8e10d45c5d50e87bc5ac2`;
-const URL_Base = `https://api.themoviedb.org/3`
+import axios from 'axios';
 
-export async function fetchDVDData(id) {
-    try {
-      const response = await fetch(`${URL_Base}/movie/${id}?api_key=${API_Key}&language=en-US`);
-      const dvdData = await response.json();
-      return dvdData;
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-      return null;
-    }
-}
+const BASE_URL = 'http://localhost:3500/api';
+
+export const fetchLatestDVDs = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/latest-dvds`);
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while fetching DVDs:', error);
+    return null;
+  }
+};
+
+export const fetchDVDById = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/dvd/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("An error occurred while fetching DVD by ID:", error);
+    return null;
+  }
+};

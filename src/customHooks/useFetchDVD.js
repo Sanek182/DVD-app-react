@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
-import { fetchDVDData } from '../api/dvdAPI';
+import { fetchLatestDVDs } from '../api/dvdAPI';
 
-const useFetchDVD = (movieIDs) => {
-  const [dvd, setDVD] = useState([]);
+const useFetchDVD = () => {
+  const [dvds, setDVDs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchDVD = async () => {
+    const fetchDVDs = async () => {
       try {
-        const fetchedDVD = await Promise.all(movieIDs.map(id => fetchDVDData(id)));
-        setDVD(fetchedDVD.filter(Boolean));
+        const dvdData = await fetchLatestDVDs();
+        if (dvdData) {
+          setDVDs(dvdData);
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -18,10 +20,10 @@ const useFetchDVD = (movieIDs) => {
       }
     };
 
-    fetchDVD();
-  }, [movieIDs]);
+    fetchDVDs();
+  }, []);
 
-  return { dvds: dvd, loading, error };
+  return { dvds, loading, error };
 };
 
 export default useFetchDVD;
