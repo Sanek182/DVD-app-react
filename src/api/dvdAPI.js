@@ -12,6 +12,21 @@ export const fetchLatestDVDs = async () => {
   }
 };
 
+export const fetchAllDVDs = async (filterParams) => {
+  try {
+    let url = `${BASE_URL}/api/all-dvds`;
+    if(filterParams) {
+      const queryParams = new URLSearchParams(filterParams).toString();
+      url += `?${queryParams}`;
+    }
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while fetching DVDs:', error);
+    return null;
+  }
+};
+
 export const fetchDVDById = async (id) => {
   try {
     const response = await axios.get(`${BASE_URL}/dvd/${id}`);
@@ -20,4 +35,10 @@ export const fetchDVDById = async (id) => {
     console.error("An error occurred while fetching DVD by ID:", error);
     return null;
   }
+};
+
+export const searchDVDs = async (query) => {
+  const response = await fetch(`/api/dvds/search?query=${query}`);
+  const dvds = await response.json();
+  return dvds;
 };
