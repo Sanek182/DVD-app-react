@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../authentication/authContext';
 import Login from '../../pages/login/LoginPage';
 import { useLoginAvailable } from '../../pages/login/LoginState';
@@ -10,9 +10,10 @@ function Header() {
   const { isAuthenticated, username } = useAuth();
   const { showLogin, setLoginBar } = useLoginAvailable();
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
-  const onSearch = (data) => {
-    // Call your search function here
+  const onSearch = async (data) => {
+    navigate(`/search?query=${data.query}`);
   };
 
   useEffect(() => {
