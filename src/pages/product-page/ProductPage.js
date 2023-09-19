@@ -42,7 +42,8 @@ function ProductPage() {
           </div>
 
           <div className="description-section">
-            <p><h3>Synopsis: </h3>{dvd.movie_description}</p>
+            <h3>Synopsis: </h3>
+            <p>{dvd.movie_description}</p>
             <Directors directors={dvd.directors} />
             <Actors actors={dvd.actors} />
           </div>

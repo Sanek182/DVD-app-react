@@ -11,7 +11,8 @@ import Logout from './pages/login/LogoutPage';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import { LoginProvider } from './pages/login/LoginState';
-import StockPage from './pages/stock/StockPage'
+import StockPage from './pages/stock/StockPage';
+import SearchPage from './pages/stock/SearchPage';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
               <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
               <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
               <Route path="/products" element={<StockPage />} />
+              <Route path="/search" element={<SearchPage />} />
             </Routes>
           </main>
           <Footer />
