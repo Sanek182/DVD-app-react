@@ -1,0 +1,77 @@
+.product-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 2em;
+    flex-wrap: wrap;
+}
+  
+.gallery-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.gallery img {
+    max-width: 100%;
+    height: auto;
+}
+  
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+  
+.tag-shield {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+  
+.info-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+  
+.info-section h1, .info-section h2, .info-section p {
+    margin-bottom: 0.5em;
+}
+  
+.description-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+  
+.show-actors, .show-directors, .show-genres {
+    display: flex;
+    flex-wrap: wrap;
+}
+  
+.actor, .director, .genre {
+    margin-right: 0.5em;
+}
+  
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+}
+  
+.prev-button, .next-button {
+    margin: 0.5em;
+}
+
+@media (max-width: 768px) {
+    .product-page {
+      flex-direction: column;
+    }
+    .info-section, .description-section, .gallery-section {
+      width: 100%;
+    }
+}
+  
