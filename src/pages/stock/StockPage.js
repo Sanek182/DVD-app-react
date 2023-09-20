@@ -12,7 +12,7 @@ function ProductsPage() {
       Object.entries(data).filter(([key, value]) => value !== "All")
     );
     const fetchData = async () => {
-      const dvdData = await fetchAllDVDs(data);
+      const dvdData = await fetchAllDVDs(filteredData);
       setDVDs(dvdData);
     };
     fetchData();

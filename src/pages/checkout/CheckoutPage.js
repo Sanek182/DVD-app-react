@@ -4,10 +4,16 @@ import { InputValidation } from "../../components/validation/InputValidation";
 import { toast } from 'react-toastify';
 import { updateUserData } from '../../api/authAPI';
 import { createOrder } from '../../api/shoppingAPI';
+import { useCheckout } from "../../components/authentication/checkoutContext";
 import "./CheckoutPage.css";
 
-function CheckoutPage({userId, cartId, totalSum}) {
+function CheckoutPage() {
     const navigate = useNavigate();
+    const { userId, cartId, totalSum } = useCheckout();
+    console.log("Debug CheckoutPage -> userId:", userId);
+    console.log("Debug CheckoutPage -> cartId:", cartId);
+    console.log("Debug CheckoutPage -> totalSum:", totalSum);
+
 
     const onSubmit = async (data) => {
         console.log("userId:", userId, "cartId:", cartId, "totalSum:", totalSum);
@@ -15,6 +21,7 @@ function CheckoutPage({userId, cartId, totalSum}) {
             const response = await updateUserData(data);
             if (response.success) {
                 const { specificDetails } = data;
+                const addExpenses = 2;
                 const orderResponse = await createOrder(userId, cartId, specificDetails, addExpenses, totalSum + addExpenses);
                 if (orderResponse.success) {
                     toast.success("Order created successfully.");

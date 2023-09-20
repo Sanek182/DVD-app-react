@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/main-page/MainPage';
 import ProductPage from './pages/product-page/ProductPage';
@@ -17,9 +17,9 @@ import CartPage from './pages/cart/CartPage';
 import CheckoutPage from './pages/checkout/CheckoutPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CheckoutProvider } from './components/authentication/checkoutContext';
 
 function App() {
-
   return (
     <Router>
       <AuthProvider>
@@ -37,19 +37,21 @@ function App() {
             pauseOnHover
           />
           <main>
-            <Routes>
-              <Route path="/auth/login" element={<MainPage />} />
-              <Route path="/" element={<MainPage />} />
-              <Route path="/auth/logout" element={<Logout />} />
-              <Route path="/movie/:id" element={<ProductPage />} />
-              <Route path="/auth/register" element={<Registration />} />
-              <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
-              <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
-              <Route path="/products" element={<StockPage />} />
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/checkout" element={<CheckoutPage />} />
-            </Routes>
+            <CheckoutProvider>
+              <Routes>
+                <Route path="/auth/login" element={<MainPage />} />
+                <Route path="/" element={<MainPage />} />
+                <Route path="/auth/logout" element={<Logout />} />
+                <Route path="/movie/:id" element={<ProductPage />} />
+                <Route path="/auth/register" element={<Registration />} />
+                <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
+                <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
+                <Route path="/products" element={<StockPage />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+              </Routes>
+            </CheckoutProvider>
           </main>
           <Footer />
         </LoginProvider>

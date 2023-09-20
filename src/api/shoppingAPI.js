@@ -56,7 +56,10 @@ export const deleteCartItem = async (cartItemId) => {
 };
 
 export const createOrder = async (userId, cartId, specificDetails, addExpenses, totalSum) => {
-    if (!userId || !cartId || !totalSum) {
+    console.log("userId:", userId);
+    console.log("cartId:", cartId);
+    console.log("totalSum:", totalSum);  
+  if (!userId || !cartId || !totalSum) {
         console.error('Missing required parameters');
         return null;
     }
