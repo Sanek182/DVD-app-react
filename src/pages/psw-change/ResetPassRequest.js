@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import toastr from "toastr";
+import { toast } from 'react-toastify';
 import { requestResetUser } from '../../api/authAPI';
 import { InputValidation } from "../../components/validation/InputValidation";
 
@@ -10,9 +10,9 @@ function ResetPassRequest() {
     const onSubmit = async (data) => {
       try {
         const response = await requestResetUser(data.email);
-        toastr.success(response.message);
+        toast.success(response.message);
       } catch (error) {
-        toastr.error("An error occurred. Please try again later.");
+        toast.error("An error occurred. Please try again later.");
       }
     };
 

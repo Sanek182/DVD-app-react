@@ -13,6 +13,9 @@ import Footer from './components/footer/Footer';
 import { LoginProvider } from './pages/login/LoginState';
 import StockPage from './pages/stock/StockPage';
 import SearchPage from './pages/stock/SearchPage';
+import CartPage from './pages/cart/CartPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -21,6 +24,17 @@ function App() {
       <AuthProvider>
         <LoginProvider>
           <Header />
+          <ToastContainer 
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <main>
             <Routes>
               <Route path="/auth/login" element={<MainPage />} />
@@ -32,6 +46,7 @@ function App() {
               <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
               <Route path="/products" element={<StockPage />} />
               <Route path="/search" element={<SearchPage />} />
+              <Route path="/cart" element={<CartPage />} />
             </Routes>
           </main>
           <Footer />

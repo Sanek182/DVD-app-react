@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../components/authentication/authContext';
 import { logoutUser } from '../../api/authAPI';
-import toastr from 'toastr';
+import { toast } from 'react-toastify';
 
 function Logout() {
   const { setIsAuthenticated, setUsername } = useAuth();
@@ -15,15 +15,15 @@ function Logout() {
           setIsAuthenticated(false);
           setUsername(null);
           console.log("Context reset done");
-          toastr.success('Successfully logged out.');
+          toast.success('Successfully logged out.');
           navigate('/');
       } else {
         console.log("Server-side logout failed", response);
-        toastr.error('An error occurred while logging out.');
+        toast.error('An error occurred while logging out.');
       }
     } catch (error) {
         console.log("Error during logout", error);
-        toastr.error('An error occurred while logging out.');
+        toast.error('An error occurred while logging out.');
     }
   };
 

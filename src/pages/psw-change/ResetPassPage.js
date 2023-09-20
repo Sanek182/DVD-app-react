@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import toastr from "toastr";
+import { toast } from 'react-toastify';
 import { resetUser } from '../../api/authAPI';
 import { InputValidation } from "../../components/validation/InputValidation";
 
@@ -14,13 +14,13 @@ function ResetPassPage() {
     try {
       const response = await resetUser(decodedToken, data.password);
       if (response.success) {
-        toastr.success("Password has been successfully reset!");
+        toast.success("Password has been successfully reset!");
         navigate("/auth/login");
       } else {
-        toastr.warning(response.message);
+        toast.warning(response.message);
       }
     } catch (error) {
-      toastr.error("An error occurred. Please try again later.");
+      toast.error("An error occurred. Please try again later.");
     }
   };
 
