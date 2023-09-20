@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../authentication/authContext';
 import Login from '../../pages/login/LoginPage';
 import { useLoginAvailable } from '../../pages/login/LoginState';
 import { useForm } from 'react-hook-form';
+import './Header.css';
 
 function Header() {
   const { isAuthenticated, username } = useAuth();
@@ -41,7 +41,9 @@ function Header() {
           />
           <button type="submit">Search</button>
         </form>        
-        <Link to="/cart" className="cart-icon">Cart</Link>
+        <Link to="/cart" className="cart-icon">
+          Cart <i className="fas fa-shopping-cart"></i>
+        </Link>
         {isAuthenticated ? (
           <>
             <span>Welcome, {username}</span>

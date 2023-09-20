@@ -4,7 +4,7 @@ import { loginUser } from '../../api/authAPI';
 import { useAuth } from "../../components/authentication/authContext";
 import { useLoginAvailable } from "./LoginState";
 import { InputValidation } from "../../components/validation/InputValidation";
-import toastr from 'toastr';
+import { toast } from 'react-toastify';
 import "./LoginPage.css";
 
 function Login() {
@@ -19,15 +19,15 @@ function Login() {
         try {
             const response = await loginUser(user, password);
             if (response.success) {
-                toastr.success(response.message);
+                toast.success(response.message);
                 setIsAuthenticated(true);
                 setUsername(user);
                 closeLoginBar();
             } else {
-                toastr.warning(response.message);
+                toast.warning(response.message);
             }
         } catch (error) {
-            toastr.error("An error occurred. Please try again later.");
+            toast.error("An error occurred. Please try again later.");
         }
     };
 

@@ -3,7 +3,7 @@ import { registerUser } from '../../api/authAPI';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { InputValidation } from "../../components/validation/InputValidation";
-import toastr from "toastr";
+import { toast } from 'react-toastify';
 import "./RegistrationPage.css";
 
 function Registration() {
@@ -13,13 +13,13 @@ function Registration() {
         try {
           const response = await registerUser(data.username, data.email, data.password);
           if (response.success) {
-            toastr.success(response.message);
+            toast.success(response.message);
             navigate("/auth/login");
           } else {
-            toastr.warning(response.message);
+            toast.warning(response.message);
           }
         } catch (error) {
-          toastr.error("An error occurred. Please try again later.");
+          toast.error("An error occurred. Please try again later.");
         }
       };
 
