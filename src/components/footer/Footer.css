@@ -3,11 +3,40 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    background-color: grey;
+    color: white;
 }
-  
+
 .contact-section,
 .social-media-section {
     display: flex;
     align-items: center;
     gap: 10px;
-}  
+    font-size: 16px;
+}
+
+.contact-section a:hover,
+.social-media-section a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.contact-section a svg,
+.social-media-section a svg {
+    margin-right: 8px;
+}
+
+.social-media-section h3 {
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 600px) {
+    .contact-section,
+    .social-media-section {
+        font-size: 14px;
+    }
+    .social-media-section h3 {
+        font-size: 16px;
+    }
+}

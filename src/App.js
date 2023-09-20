@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/main-page/MainPage';
@@ -20,8 +19,10 @@ import ReceiptPage from './pages/order/ReceiptPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CheckoutProvider } from './components/authentication/checkoutContext';
+import './App.css';
 
 function App() {
+
   return (
     <Router>
       <AuthProvider>
@@ -38,24 +39,26 @@ function App() {
             draggable
             pauseOnHover
           />
-          <main>
-            <CheckoutProvider>
-              <Routes>
-                <Route path="/auth/login" element={<MainPage />} />
-                <Route path="/" element={<MainPage />} />
-                <Route path="/auth/logout" element={<Logout />} />
-                <Route path="/movie/:id" element={<ProductPage />} />
-                <Route path="/auth/register" element={<Registration />} />
-                <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
-                <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
-                <Route path="/products" element={<StockPage />} />
-                <Route path="/search" element={<SearchPage />} />
-                <Route path="/cart" element={<CartPage />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/order" element={<OrderPage />} />
-                <Route path="/receipt" element={<ReceiptPage />} />
-              </Routes>
-            </CheckoutProvider>
+          <main className={"main-background"}>
+            <div className="main-content">
+              <CheckoutProvider>
+                <Routes>
+                  <Route path="/auth/login" element={<MainPage />} />
+                  <Route path="/" element={<MainPage />} />
+                  <Route path="/auth/logout" element={<Logout />} />
+                  <Route path="/movie/:id" element={<ProductPage />} />
+                  <Route path="/auth/register" element={<Registration />} />
+                  <Route path="/auth/reset-password-request" element={<ResetPassRequest />} />
+                  <Route path="/auth/reset-password/:token" element={<ResetPassPage />} />
+                  <Route path="/products" element={<StockPage />} />
+                  <Route path="/search" element={<SearchPage />} />
+                  <Route path="/cart" element={<CartPage />} />
+                  <Route path="/checkout" element={<CheckoutPage />} />
+                  <Route path="/order" element={<OrderPage />} />
+                  <Route path="/receipt" element={<ReceiptPage />} />
+                </Routes>
+              </CheckoutProvider>
+            </div>
           </main>
           <Footer />
         </LoginProvider>

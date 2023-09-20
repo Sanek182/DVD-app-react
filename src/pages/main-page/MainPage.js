@@ -14,7 +14,7 @@ function MainPage() {
 
     return (
         <main >
-            <div className="dvd-container">
+            <div className="dvd-list">
                 {dvds.map(dvd => (
                 <DVDcard key={dvd.id} dvd={dvd} />
                 ))}

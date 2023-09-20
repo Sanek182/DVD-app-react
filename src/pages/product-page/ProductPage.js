@@ -28,15 +28,16 @@ function ProductPage() {
         <>
           <div className="gallery-section">
             <Gallery images={dvd.gallery} />
+            <h3>Tags:</h3>
             <Tags tags={dvd.tags} />
           </div>
 
           <div className="info-section">
-            <h1>{dvd.movie_title} <i>({dvd.original_title})</i></h1>
-            <h2>{dvd.year_produced} <i>({dvd.year_dvd_released})</i></h2>
+            <h1>{dvd.movie_title} <i>(Original: {dvd.original_title})</i></h1>
+            <h2>{dvd.year_produced} <i>(DVD Released: {dvd.year_dvd_released})</i></h2>
             <Genres genres={dvd.genres} />
             <p>{dvd.movie_country}</p>
-            <p>{dvd.language} (Subtitles: <i>{dvd.movie_subtitle})</i></p>
+            <p>{dvd.movie_language} (Subtitles: <i>{dvd.movie_subtitle})</i></p>
             <p>{dvd.movie_length} min</p>
             <p>Type: {dvd.product_type}</p>
           </div>

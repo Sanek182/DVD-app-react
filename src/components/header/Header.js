@@ -11,6 +11,7 @@ function Header() {
   const { showLogin, setLoginBar } = useLoginAvailable();
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const [spin, setSpin] = useState(false);
 
   const onSearch = async (data) => {
     navigate(`/search?query=${data.query}`);
@@ -20,18 +21,31 @@ function Header() {
     console.log("showLogin value:", showLogin);
 }, [showLogin]);
 
+  useEffect(() => {
+    setSpin(true);
+    const timer = setTimeout(() => setSpin(false), 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <header className="header-container">
       <div className="logo-section">
-        <img src="/logo.png" alt="Logo" className="logo" />
-        <h1>AlexDVD LLC</h1>
+        <Link to="/">
+        <img 
+          src="/logos/image1.png" 
+          alt="Site Logo" 
+          className={`site-logo ${spin ? 'spin' : ''}`}
+        />
+        </Link>
+        <h3>AlexDVD LLC</h3>
       </div>
       <div className="navigation-section">
         <select className="dropdown-bar">
           <option value="option1">Site Navigation</option>
           <option value="option2">Option 2</option>
         </select>
-        <Link to="/products" className="products-icon">Products</Link>
+        <Link to="/products" className="nav-button">Products</Link>
         <form onSubmit={handleSubmit(onSearch)}>
           <input
             type="search"
@@ -41,7 +55,7 @@ function Header() {
           />
           <button type="submit">Search</button>
         </form>        
-        <Link to="/cart" className="cart-icon">
+        <Link to="/cart" className="nav-button">
           Cart <i className="fas fa-shopping-cart"></i>
         </Link>
         {isAuthenticated ? (

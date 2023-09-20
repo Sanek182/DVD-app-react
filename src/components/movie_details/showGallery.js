@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './showGallery.css';
 
 function Gallery({ images }) {
     if (!images) {
@@ -16,11 +17,13 @@ function Gallery({ images }) {
     };
   
     return (
-      <div className="gallery">
+      <div className="gallery-wrapper">
         <h3>Gallery:</h3>
-        <button onClick={prevImage}>Previous</button>
-        <img src={images[currentImageIndex]} alt="Gallery image" />
-        <button onClick={nextImage}>Next</button>
+        <div className="gallery">
+          <button className="prev-button" onClick={prevImage}>&larr;</button>
+          <img src={images[currentImageIndex]} alt="Gallery image" />
+          <button className="next-button" onClick={nextImage}>&rarr;</button>
+      </div>
       </div>
     );
 };

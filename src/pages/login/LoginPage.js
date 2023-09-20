@@ -54,8 +54,8 @@ function Login() {
 
     return (
         <div className={showLogin ? "login-container active" : "login-container"}>
-            <button onClick={handleClose}>Close</button>
             <div className="login-section">
+                <button className="close-button" onClick={handleClose}>Close</button>
                 <h2>PLEASE LOG IN</h2>
                 <InputValidation fields={fields} onSubmit={handleLogin} />
                 <div className="registration-links">
