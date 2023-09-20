@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import './InputValidation.css'
 
 export const InputValidation = ({ fields, onSubmit }) => {
   const { control, handleSubmit, formState: { errors }, watch } = useForm();
@@ -38,7 +39,7 @@ export const InputValidation = ({ fields, onSubmit }) => {
                     </select>
                 );
               }
-              return <input {...innerField} type={field.type} placeholder={field.placeholder} />;
+              return <input className="custom-input" {...innerField} type={field.type} placeholder={field.placeholder} />;
             }}
           />
           {errors[field.name] && <p className="error-message">{errors[field.name].message}</p>}

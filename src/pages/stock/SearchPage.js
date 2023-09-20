@@ -21,7 +21,7 @@ function SearchPage() {
 
   return (
     <div className="search-results-page">
-      <h2>Search Results for "{new URLSearchParams(location.search).get('query')}"</h2>
+      <h2>That is what we have on your "{new URLSearchParams(location.search).get('query')}" request.</h2>
       <div className="dvd-list">
         {searchResults.length > 0 ? (
           searchResults.map((dvd) => <DVDcard key={dvd.id} dvd={dvd} />)
