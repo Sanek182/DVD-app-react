@@ -1,15 +1,19 @@
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-const apiRequest = async (url, data) => {
+const apiRequest = async (url, data, method = 'POST') => {
   try {
-    const response = await axios.post(url, data);
+    const response = await axios({
+      method,
+      url,
+      data
+    });
     return response.data;
   } catch (error) {
     console.error(error);
     return error.response.data;
   }
-}
+};
 
 const BASE_URL = 'http://localhost:3500/auth';
 
@@ -27,6 +31,9 @@ export const resetUser = (token, newPassword) =>
 
 export const logoutUser = () =>
   apiRequest(`${BASE_URL}/logout`, {});
+
+export const updateUserData = (newDetails) => 
+  apiRequest(`${BASE_URL}/update-user`, { ...newDetails }, 'PUT');
 
 export const checkAuth = async () => {
   try {

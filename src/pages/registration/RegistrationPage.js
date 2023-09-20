@@ -1,7 +1,6 @@
 import React from "react";
 import { registerUser } from '../../api/authAPI';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { InputValidation } from "../../components/validation/InputValidation";
 import { toast } from 'react-toastify';
 import "./RegistrationPage.css";
