@@ -24,6 +24,7 @@ export const CheckoutProvider = ({ children }) => {
       setUserId(data.userId);
       setCartId(data.cartId);
       setTotalSum(data.totalSum);
+      setOrderId(data.orderId);
       console.log("Data received from Axios:", data);
     })
     .catch((error) => {

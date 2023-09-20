@@ -108,3 +108,24 @@ export const createShipment = async (userId, orderId, trackingNum, shipDays, sta
     return { success: false, message: 'Failed to create shipment.' };
   }
 };
+
+export const fetchReceiptInfo = async (orderId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/receipt-info/${orderId}`);
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while fetching receipt info:', error);
+    return null;
+  }
+};
+
+
+export const cancelShipment = async (orderId) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/cancel-shipment`, { data: { orderId } });
+    return response.data;
+  } catch (error) {
+    console.error("An error occurred while cancelling the shipment:", error);
+    return null;
+  }
+};
