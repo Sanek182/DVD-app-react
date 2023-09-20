@@ -12,6 +12,7 @@ export const useCheckout = () => {
 export const CheckoutProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
   const [cartId, setCartId] = useState(null);
+  const [orderId, setOrderId] = useState(null);
   const [totalSum, setTotalSum] = useState(0);
 
   useEffect(() => {
@@ -33,9 +34,11 @@ export const CheckoutProvider = ({ children }) => {
   const value = {
     userId,
     cartId,
+    orderId,
     totalSum,
     setUserId,
     setCartId,
+    setOrderId,
     setTotalSum,
   };
 

@@ -79,4 +79,32 @@ export const createOrder = async (userId, cartId, specificDetails, addExpenses, 
         return null;
     }
 };
+
+export const fetchOrderItems = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/order-items`);
+    return response.data;
+  } catch (error) {
+    console.error('An error occurred while fetching order items:', error);
+    return null;
+  }
+};
   
+export const createShipment = async (userId, orderId, trackingNum, shipDays, status) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/create-shipment`, {
+      userId,
+      orderId,
+      trackingNum,
+      shipDays,
+      status,
+    }, {
+      withCredentials: true,
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("An error occurred while creating shipment:", error);
+    return { success: false, message: 'Failed to create shipment.' };
+  }
+};

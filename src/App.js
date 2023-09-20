@@ -15,6 +15,8 @@ import StockPage from './pages/stock/StockPage';
 import SearchPage from './pages/stock/SearchPage';
 import CartPage from './pages/cart/CartPage';
 import CheckoutPage from './pages/checkout/CheckoutPage';
+import OrderPage from './pages/order/OrderPage';
+import ReceiptPage from './pages/order/ReceiptPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CheckoutProvider } from './components/authentication/checkoutContext';
@@ -50,6 +52,8 @@ function App() {
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/order" element={<OrderPage />} />
+                <Route path="/receipt" element={<ReceiptPage />} />
               </Routes>
             </CheckoutProvider>
           </main>
