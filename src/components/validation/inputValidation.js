@@ -21,6 +21,23 @@ export const InputValidation = ({ fields, onSubmit }) => {
                 field.rules = field.rules || {};
                 field.rules.validate = value => value === password || "The passwords do not match";
               }
+              if (field.type === 'select') {
+                return (
+                    <select {...innerField}>
+                        <option value="BG">Bulgaria</option>
+                        <option value="CZ">Czech Republic</option>
+                        <option value="HU">Hungary</option>
+                        <option value="IL">Israel</option>
+                        <option value="LT">Lithuania</option>
+                        <option value="MD">Moldova</option>
+                        <option value="PL">Poland</option>
+                        <option value="RO">Romania</option>
+                        <option value="SK">Slovakia</option>
+                        <option value="TR">Turkey</option>
+                        <option value="UA">Ukraine</option>
+                    </select>
+                );
+              }
               return <input {...innerField} type={field.type} placeholder={field.placeholder} />;
             }}
           />

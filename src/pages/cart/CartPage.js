@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
   const [stockQuantities, setStockQuantities] = useState({});
+  const [totalSum, setTotalSum] = useState(0);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -20,6 +21,11 @@ function CartPage() {
     
     fetchItems();
   }, []);
+
+  useEffect(() => {
+    const sum = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    setTotalSum(sum);
+}, [cartItems]);
 
   const handleQuantityChange = async (cartItemId, newQuantity) => {
     const stockQuantity = stockQuantities[cartItemId];

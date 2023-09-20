@@ -54,4 +54,26 @@ export const deleteCartItem = async (cartItemId) => {
       return null;
     }
 };
+
+export const createOrder = async (userId, cartId, specificDetails, addExpenses, totalSum) => {
+    if (!userId || !cartId || !totalSum) {
+        console.error('Missing required parameters');
+        return null;
+    }
+    try {
+        const response = await axios.post(`${BASE_URL}/create-order`, {
+          userId,
+          cartId,
+          specificDetails,
+          addExpenses,
+          totalSum
+        }, {
+        withCredentials: true
+        });
+        return response.data;
+    } catch (error) {
+        console.error('An error occurred while creating order:', error);
+        return null;
+    }
+};
   

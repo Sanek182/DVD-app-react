@@ -14,6 +14,7 @@ import { LoginProvider } from './pages/login/LoginState';
 import StockPage from './pages/stock/StockPage';
 import SearchPage from './pages/stock/SearchPage';
 import CartPage from './pages/cart/CartPage';
+import CheckoutPage from './pages/checkout/CheckoutPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -47,6 +48,7 @@ function App() {
               <Route path="/products" element={<StockPage />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
             </Routes>
           </main>
           <Footer />
