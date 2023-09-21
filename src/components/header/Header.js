@@ -17,6 +17,18 @@ function Header() {
     navigate(`/search?query=${data.query}`);
   };
 
+  const handleIntermediateLogout = () => {
+    navigate("/auth/logout");
+  };
+
+  const handleChange = (event) => {
+    if (event.target.value === "orders") {
+      navigate("/orders");
+    } else if (event.target.value === "wishlist") {
+      navigate("/wishlist");
+    }
+  };
+
   useEffect(() => {
     console.log("showLogin value:", showLogin);
 }, [showLogin]);
@@ -41,9 +53,10 @@ function Header() {
         <h3>AlexDVD LLC</h3>
       </div>
       <div className="navigation-section">
-        <select className="dropdown-bar">
-          <option value="option1">Site Navigation</option>
-          <option value="option2">Option 2</option>
+      <select className="dropdown-bar" onChange={handleChange}>
+          <option value="siteNavigation">Site Navigation</option>
+          <option value="orders">Your Orders</option>
+          <option value="wishlist">Your Wishlist</option>
         </select>
         <Link to="/products" className="nav-button">Products</Link>
         <form onSubmit={handleSubmit(onSearch)}>
@@ -61,7 +74,7 @@ function Header() {
         {isAuthenticated ? (
           <>
             <span>Welcome, {username}</span>
-            <Link to="auth/logout">Log Out</Link>
+            <button onClick={handleIntermediateLogout} className="nav-button">Log Out</button>
           </>
         ) : (
           <>

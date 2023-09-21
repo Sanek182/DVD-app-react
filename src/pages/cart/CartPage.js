@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { fetchCartItems, updateCartItem, deleteCartItem } from '../../api/shoppingAPI';
 import CartItem from './CartItem';
 import { toast } from 'react-toastify';
+import './CartPage.css';
 
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);

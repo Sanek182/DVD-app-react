@@ -31,22 +31,33 @@ function ProductsPage() {
       <form onSubmit={handleSubmit(onFilter)}>
         <select {...register("genre")}>
           <option value="All">All Genres</option>
+          <option value="Action">Action</option>
           <option value="Comedy">Comedy</option>
           <option value="Crime">Crime</option>
           <option value="Drama">Drama</option>
+          <option value="Romance">Romance</option>
           <option value="Thriller">Thriller</option>          
         </select>
         <select {...register("decade")}>
           <option value="All">All Years</option>
+          <option value="1950">1950s</option>
+          <option value="1960">1960s</option>
+          <option value="1970">1970s</option>
           <option value="1980">1980s</option>
           <option value="1990">1990s</option>
           <option value="2000">2000s</option>
+          <option value="2010">2010s</option>
+          <option value="2020">2020s</option>
         </select>
         <select {...register("country")}>
           <option value="All">All Countries</option>
-          <option value="United States">United States</option>
           <option value="France">France</option>
+          <option value="Germany">Germany</option>
+          <option value="Hungary">Hungary</option>
+          <option value="Israel">Israel</option>
           <option value="Japan">Japan</option>
+          <option value="Spain">Spain</option>
+          <option value="United States">United States</option>
         </select>
         <button type="submit">Filter</button>
       </form>

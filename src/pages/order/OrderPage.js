@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchOrderItems, createShipment } from '../../api/shoppingAPI';
 import { useCheckout } from "../../components/authentication/checkoutContext";
 import { toast } from 'react-toastify';
+import './OrderPage.css';
 
 function OrderPage() {
   const [orderItems, setOrderItems] = useState([]);
@@ -61,10 +62,11 @@ function OrderPage() {
         <thead>
           <tr>
             <th>Product</th>
-            <th>Type</th>
+            <th>Media Type</th>
             <th>Quantity</th>
             <th>Price</th>
-            <th>In Stock</th>
+            <th>Is In Stock?</th>
+            <th>Ordered At</th>
           </tr>
         </thead>
         <tbody>

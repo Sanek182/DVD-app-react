@@ -1,13 +1,23 @@
 .custom-input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 2px solid orange;
-    border-radius: 4px;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 12px;
-  }
+  width: 30%;
+  padding: 10px;
+  margin: 8px auto;
+  box-sizing: border-box;
+  border: 2px solid orange;
+  border-radius: 4px;
+}
+
+.custom-textarea {
+  width: 30%;
+  height: 100px;
+  padding: 10px;
+  margin: 8px auto;
+  box-sizing: border-box;
+  border: 2px solid orange;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: red;
+  font-size: 18px;
+}
