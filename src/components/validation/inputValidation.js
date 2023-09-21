@@ -25,19 +25,23 @@ export const InputValidation = ({ fields, onSubmit }) => {
               if (field.type === 'select') {
                 return (
                     <select {...innerField}>
-                        <option value="BG">Bulgaria</option>
-                        <option value="CZ">Czech Republic</option>
-                        <option value="HU">Hungary</option>
-                        <option value="IL">Israel</option>
-                        <option value="LT">Lithuania</option>
-                        <option value="MD">Moldova</option>
-                        <option value="PL">Poland</option>
-                        <option value="RO">Romania</option>
-                        <option value="SK">Slovakia</option>
-                        <option value="TR">Turkey</option>
-                        <option value="UA">Ukraine</option>
+                        <option value="" disabled>Select your country of residence</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Czech Republic">Czech Republic</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Ukraine">Ukraine</option>
                     </select>
                 );
+              }
+              if (field.name === 'specificDetails') {
+                return <textarea className="custom-textarea" {...innerField}></textarea>;
               }
               return <input className="custom-input" {...innerField} type={field.type} placeholder={field.placeholder} />;
             }}

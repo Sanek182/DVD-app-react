@@ -25,7 +25,7 @@ function CheckoutPage() {
                 const orderResponse = await createOrder(userId, cartId, specificDetails, addExpenses, totalSum + addExpenses);
                 if (orderResponse.success) {
                     toast.success("Order created successfully.");
-                    navigate("/order");
+                    navigate("/orders");
                 }
             } else {
                 toast.warning(response.message);
@@ -41,13 +41,14 @@ function CheckoutPage() {
         { name: 'country_resid', type: 'select', placeholder: 'Country of Residence', rules: { required: 'Country of Residence is required' }},
         { name: 'birth_date', type: 'date', placeholder: 'Birth Date', rules: { required: 'Birth Date is required' }},
         { name: 'phone_num', type: 'tel', placeholder: 'Phone Number', rules: { required: 'Phone Number is required', pattern: { value: /^\+?[0-9]*$/, message: 'Invalid phone number'}}},
-        { name: 'specificDetails', type: 'text', placeholder: 'Any specific details for shipping', rules: { maxLength: { value: 500, message: 'Maximum 500 characters allowed' }}}
+        { name: 'specificDetails', type: 'textarea', placeholder: 'Any specific details for shipping', rules: { maxLength: { value: 500, message: 'Maximum 500 characters allowed' }}}
     ];
 
     return (
         <main>
             <div className="checkout-container">
                 <h2>Proceed to Checkout</h2>
+                <p className="subtitle">Please enter any specific details for shipping below:</p>
                 <InputValidation fields={fields} onSubmit={onSubmit} />
             </div>
         </main>

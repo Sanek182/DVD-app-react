@@ -52,11 +52,10 @@ function ReceiptPage() {
       {userInfo && shipmentInfo ? (
         <>
           <p>
-            Thank you {userInfo.firstName} {userInfo.lastName}. Your order # {orderId}
-            is {shipmentInfo.days} days away from shipping to {userInfo.country}.
+            Thank you, {userInfo.firstName} {userInfo.lastName} for making your purchase in our DVD store. Your order #{orderId} is {shipmentInfo.days} days away from shipping to {userInfo.country}.
           </p>
           <p>
-            <strong>Tracking Number:</strong> {shipmentInfo.trackingNum}
+            <strong>It's Tracking Number IS:</strong> {shipmentInfo.trackingNum}
           </p>
         </>
       ) : (

@@ -1,0 +1,30 @@
+.order-page-container {
+    margin: 20px;
+}
+  
+.order-page-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+.order-page-container th,
+.order-page-container td {
+    border: 1px solid #ddd;
+    padding: 12px 16px;
+    text-align: left;
+}
+  
+.order-page-container th {
+    background-color: #f2f2f2;
+}
+  
+.order-page-container tr:hover {
+    background-color: #f5f5f5;
+}
+  
+.order-action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+  

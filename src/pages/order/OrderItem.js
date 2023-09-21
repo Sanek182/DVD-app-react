@@ -9,6 +9,7 @@ function OrderItem({ order }) {
         <td>{order.quantity}</td>
         <td>{parseFloat(order.price).toFixed(2)}</td>
         <td>{order.stock_quantity > 0 ? 'Yes' : 'No'}</td>
+        <td>{new Date(order.created_at).toLocaleString()}</td>
       </tr>
     </>
   );

@@ -54,7 +54,7 @@ function App() {
                   <Route path="/search" element={<SearchPage />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />
-                  <Route path="/order" element={<OrderPage />} />
+                  <Route path="/orders" element={<OrderPage />} />
                   <Route path="/receipt" element={<ReceiptPage />} />
                 </Routes>
               </CheckoutProvider>
